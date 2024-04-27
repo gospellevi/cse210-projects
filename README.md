@@ -1,5 +1,5 @@
 # cse210-ww-student-template
-Student name: Gospel Chiedozie Levi
+Student name: Gospel Chiedozie Levi (Alias: amadioha)
 
 This is the starter code for students in the worldwide content version of CSE 210.
 
