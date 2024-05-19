@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Develop02",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\Develop02.csproj",
+            "launchConfigurationId": "TargetFramework=;Develop02"
+        }
+    ]
+}

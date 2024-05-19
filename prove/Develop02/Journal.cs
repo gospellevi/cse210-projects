@@ -2,110 +2,57 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-
 public class Journal
 {
-    private List<Entry> _entries;
+    public List<Entry> _entries = new List<Entry>();
 
-    public Journal()
+    // Adds a new entry to the journal
+    public void AddEntry(Entry newEntry)
     {
-        _entries = new List<Entry>();
+        _entries.Add(newEntry);
     }
-
-    public void AddEntry(string promptText, string entryText)
-    {
-        string date = DateTime.Now.ToString("yyyy-MM-dd");
-        _entries.Add(new Entry(date, promptText, entryText));
-    }
-
+    
+    // Displays all entries in the journal
     public void DisplayAll()
     {
-        if (_entries.Count == 0)
+        foreach (Entry entry in _entries)
         {
-            Console.WriteLine("There are no entries in your journal yet.");
+            entry.Display();
         }
-        else
+    }
+    
+    // Saves the journal entries to a specified file, creating the file
+    public void SaveToFile(string file)
+    {
+        using (StreamWriter writer = new StreamWriter(file))
         {
             foreach (Entry entry in _entries)
             {
-                entry.Display();
+                writer.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
+        Console.WriteLine($"Saving to {file}...");
     }
-
-    public void SaveToFile(string file)
-    {
-        try
-        {
-            using (StreamWriter writer = new StreamWriter(file))
-            {
-                foreach (Entry entry in _entries)
-                {
-                    writer.WriteLine(entry.GetDate());
-                    writer.WriteLine(entry.GetPromptText());
-                    writer.WriteLine(entry.GetEntryText());
-                    writer.WriteLine("----");
-                }
-            }
-            Console.WriteLine("Journal saved successfully to {0}.", file);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error saving journal: {0}", ex.Message);
-        }
-    }
-
+    // LocalDataStoreSlot the journal entries from a specified file
     public void LoadFromFile(string file)
     {
-        _entries.Clear(); // Clear existing entries before loading
-
-        try
+        _entries.Clear();
+        using (StreamReader reader = new StreamReader(file))
         {
-            if (!File.Exists(file))
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
-                Console.WriteLine("File not found: {0}", file);
-                return;
-            }
-
-            using (StreamReader reader = new StreamReader(file))
-            {
-                string line;
-                string date = null;
-                string promptText = null;
-                string entryText = null;
-
-                while ((line = reader.ReadLine()) != null)
+                string[] parts = line.Split('|');
+                if (parts.Length == 3)
                 {
-                    if (date == null)
-                    {
-                        date = line;
-                    }
-                    else if (promptText == null)
-                    {
-                        promptText = line;
-                    }
-                    else if (entryText == null)
-                    {
-                        entryText = line;
-                    }
-                    else if (line == "----")
-                    {
-                        if (date != null && promptText != null && entryText != null)
-                        {
-                            _entries.Add(new Entry(date, promptText, entryText));
-                        }
-
-                        date = null;
-                        promptText = null;
-                        entryText = null;
-                    }
+                    Entry entry = new Entry();
+                    entry._date = parts[0];
+                    entry._promptText = parts[1];
+                    entry._entryText = parts[2];
+                    _entries.Add(entry);
                 }
             }
-            Console.WriteLine("Journal loaded successfully from {0}.", file);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error loading journal: {0}", ex.Message);
-        }
+        Console.WriteLine($"Journal loaded from {file}");
     }
 }

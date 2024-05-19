@@ -1,25 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 
 
 public class PromptGenerator
 {
-    private List<string> _prompts;
+    public List<string> _prompts;
 
-    public PromptGenerator()
+    // Initializes the prompt generator with a list of prompts
+    public PromptGenerator(List<string> prompts)
     {
-        _prompts = new List<string>()
-        {
-            "Who was the most interesting person I interacted with today?",
-            "What was the best part of my day?",
-            "What was the strongest emotion I felt today?",
-            "If I had one thing I could do over today, what would it be?",
-            "What am I grateful for today?"
-        };
+        _prompts = prompts;
     }
 
+    // public List<string> _prompts = new List<string>();
+
+
+    // Returns a random prompt from the list
     public string GetRandomPrompt()
     {
         Random random = new Random();
