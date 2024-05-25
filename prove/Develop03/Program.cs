@@ -36,10 +36,10 @@ class Program
 
     while (true)
     {
-        // Console.Clear();
+        Console.Clear();
 
         // Mimic clearing the console by writing new lines
-        for (int i = 0; i < 30; i++) Console.WriteLine();
+        // for (int i = 0; i < 30; i++) Console.WriteLine();
 
         // Display the scripture text
         Console.WriteLine(scripture.GetDisplayText());
@@ -56,8 +56,8 @@ class Program
         // If all words are hidden, end the program
         if (scripture.IsCompletelyHidden())
         {
-            // Console.Clear();
-            for (int i = 0; i < 30; i++) Console.WriteLine();
+            Console.Clear();
+            // for (int i = 0; i < 30; i++) Console.WriteLine();
 
             // Display the scripture text
             Console.WriteLine(scripture.GetDisplayText());

@@ -7,7 +7,7 @@ class Program
 
         Assignment assignment1 = new Assignment("Fulness Levi", "Decimals");
         Console.WriteLine(assignment1.GetSummary());
-
+        
         MathAssignment assignment2 = new MathAssignment("Success Levi", "Addition", "3.2", "5-12");
         Console.WriteLine(assignment2.GetSummary());
         Console.WriteLine(assignment2.GetHomeworkList());
