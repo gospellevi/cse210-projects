@@ -1,0 +1,5 @@
+300
+SimpleGoal: Scripture study, Study everyday, 100, False
+EternalGoal: Forgive my spouse, Learn to always forgive my spouse, 100
+ChecklistGoal: Attend chapel cleaning, Attend chapel cleaning when it is my family's turn, 100, 1, 3, 50
+SimpleGoal: Code, Code everyday, 200, True
