@@ -40,16 +40,18 @@ public class Order
 
     public string DisplayPackingLabel()
     {
-        string label = "Packing Label:\n";
+        // string label = "Packing Label:\n";
+        string label = "";
+
         foreach (Product product in _products)
         {
-            label += $"{product.GetName()} (ID: {product.GetProductId()})\n";
+            label += $"Item: {product.GetName()}  |  ID: {product.GetProductId()}\n";
         }
         return label;
     }
 
     public string DisplayShippingLabel()
     {
-        return $"Shipping Label:\n{_customer.GetName()}\n{_customer.GetAddress().DisplayStreetAddress()}";
+        return $"{_customer.GetName()}\n{_customer.GetAddress().DisplayStreetAddress()}";
     }
 }
