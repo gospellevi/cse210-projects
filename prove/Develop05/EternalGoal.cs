@@ -1,9 +1,15 @@
 using System;
 
+// Derived class for eternal goals
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int points) : base(name, description, points) { }
+    // Constructor
+    public EternalGoal(string name, string description, int points) : base(name, description, points) 
+    { 
+         // No additional attributes needed for eternal goals
+    }
 
+    // Override methods from base class
     public override int RecordEvent()
     {
         return _points;
@@ -24,17 +30,3 @@ public class EternalGoal : Goal
         return $"EternalGoal;{_shortName};{_description};{_points}";
     }
 }
-
-// using System;
-
-// public class EternalGoal : Goal
-// {
-//     public EternalGoal(string name, string description, int points) : base(name, description, points) { }
-
-//     public override int RecordEvent() { return _points; }
-//     public override bool IsComplete() { return false; }
-//     public override string GetStringRepresentation() 
-//     {
-//         return $"EternalGoal: {_shortName}, {_description}, {_points}";
-//     }
-// }
